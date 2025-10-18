@@ -259,3 +259,27 @@ LEFT JOIN Examinations e
    AND sub.subject_name = e.subject_name
 GROUP BY s.student_id, s.student_name, sub.subject_name
 ORDER BY s.student_id, sub.subject_name;
+
+-- Q8
+
+-- Table: Employee
+
+-- +-------------+---------+
+-- | Column Name | Type    |
+-- +-------------+---------+
+-- | id          | int     |
+-- | name        | varchar |
+-- | department  | varchar |
+-- | managerId   | int     |
+-- +-------------+---------+
+-- id is the primary key (column with unique values) for this table.
+-- Each row of this table indicates the name of an employee, their department, and the id of their manager.
+-- If managerId is null, then the employee does not have a manager.
+-- No employee will be the manager of themself.
+ 
+
+-- Write a solution to find managers with at least five direct reports.
+
+-- Return the result table in any order.
+
+select e.name from employee e join employee e2 on e.id = e2.managerId group by e.id, e.name having count(*)>=5
